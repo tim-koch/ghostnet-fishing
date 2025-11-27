@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <meta charset="UTF-8">
+    <title>Geisternetz als geborgen melden</title>
+</head>
+<body>
+
+<header>
+    <h1>Ghost Net Fishing</h1>
+</header>
+
+<main>
+
+<h2>Geisternetze geborgen melden</h2>
+
+<nav>
+    <a th:href="@{/}">Startseite</a>
+    <a th:href="@{/ghostnets}">Alle Geisternetze</a>
+    <a th:href="@{/ghostnets/open}">Offene Geisternetze</a>
+    <a th:href="@{/ghostnets/new}">Neues Geisternetz melden</a>
+</nav>
+
+
+<p>Willst du dieses Geisternetz wirklich als <strong>geborgen</strong> markieren?</p>
+
+<form th:action="@{'/ghostnets/' + ${netId} + '/recover'}" method="post">
+    <button type="submit">Ja, als geborgen markieren</button>
+    <a th:href="@{/ghostnets/open}">Abbrechen</a>
+</form>
+
+</body>
+</html>

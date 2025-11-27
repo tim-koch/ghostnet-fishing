@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <meta charset="UTF-8">
+    <title>Offene Geisternetze</title>
+</head>
+<body>
+
+<header>
+    <h1>Ghost Net Fishing</h1>
+</header>
+
+<main>
+
+<h2>Alle offenen Geisternetze</h2>
+
+<nav>
+    <a th:href="@{/}">Startseite</a>
+    <a th:href="@{/ghostnets}">Alle Geisternetze</a>
+    <a th:href="@{/ghostnets/open}">Offene Geisternetze</a>
+    <a th:href="@{/ghostnets/new}">Neues Geisternetz melden</a>
+</nav>
+
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Lat</th>
+        <th>Lon</th>
+        <th>Größe</th>
+        <th>Status</th>
+        <th>Aktion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="n : ${nets}">
+        <td th:text="${n.id}"></td>
+        <td th:text="${n.latitude}"></td>
+        <td th:text="${n.longitude}"></td>
+        <td th:text="${n.sizeEstimate}"></td>
+        <td th:text="${n.status}"></td>
+        <td>
+            <span th:if="${n.status.name() == 'GEMELDET'}">
+                <a th:href="@{'/ghostnets/' + ${n.id} + '/assign'}">Bergung übernehmen</a> |
+                <a th:href="@{'/ghostnets/' + ${n.id} + '/lost'}">Als verschollen melden</a>
+            </span>
+            <span th:if="${n.status.name() == 'BERGUNG_BEVORSTEHEND'}">
+                <a th:href="@{'/ghostnets/' + ${n.id} + '/recover'}">Als geborgen melden</a> |
+                <a th:href="@{'/ghostnets/' + ${n.id} + '/lost'}">Als verschollen melden</a>
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

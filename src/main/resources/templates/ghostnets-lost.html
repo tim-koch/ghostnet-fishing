@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <meta charset="UTF-8">
+    <title>Geisternetz als verschollen melden</title>
+</head>
+<body>
+
+<header>
+    <h1>Ghost Net Fishing</h1>
+</header>
+
+<main>
+
+<h2>Geisternetz verschollen melden</h2>
+
+<nav>
+    <a th:href="@{/}">Startseite</a>
+    <a th:href="@{/ghostnets}">Alle Geisternetze</a>
+    <a th:href="@{/ghostnets/open}">Offene Geisternetze</a>
+    <a th:href="@{/ghostnets/new}">Neues Geisternetz melden</a>
+</nav>
+
+
+<p>
+    Bitte gib deinen Namen an. Diese Meldung ist <strong>nicht anonym</strong>.
+</p>
+
+<form th:action="@{'/ghostnets/' + ${netId} + '/lost'}" th:object="${form}" method="post">
+
+    <div>
+        <label for="name">Name:</label>
+        <input id="name" type="text" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}"></span>
+    </div>
+
+    <div>
+        <label for="phoneNumber">Telefonnummer (optional):</label>
+        <input id="phoneNumber" type="text" th:field="*{phoneNumber}">
+    </div>
+
+    <div>
+        <button type="submit">Als verschollen melden</button>
+        <a th:href="@{/ghostnets/open}">Abbrechen</a>
+    </div>
+
+</form>
+
+</body>
+</html>

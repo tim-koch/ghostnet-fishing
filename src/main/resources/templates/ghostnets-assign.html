@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <meta charset="UTF-8">
+    <title>Bergung übernehmen</title>
+</head>
+<body>
+<header>
+    <h1>Ghost Net Fishing</h1>
+</header>
+
+<main>
+
+<h2>Bergung übernehmen von Geisternetz</h2>
+
+<nav>
+    <a th:href="@{/}">Startseite</a>
+    <a th:href="@{/ghostnets}">Alle Geisternetze</a>
+    <a th:href="@{/ghostnets/open}">Offene Geisternetze</a>
+    <a th:href="@{/ghostnets/new}">Neues Geisternetz melden</a>
+</nav>
+
+
+<form th:action="@{'/ghostnets/' + ${netId} + '/assign'}" th:object="${form}" method="post">
+
+    <div>
+        <label for="name">Name:</label>
+        <input id="name" type="text" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}"></span>
+    </div>
+
+    <div>
+        <label for="phoneNumber">Telefonnummer (optional):</label>
+        <input id="phoneNumber" type="text" th:field="*{phoneNumber}">
+    </div>
+
+    <div>
+        <button type="submit">Bergung übernehmen</button>
+        <a th:href="@{/ghostnets}">Abbrechen</a>
+    </div>
+
+</form>
+
+</body>
+</html>

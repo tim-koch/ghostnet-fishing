@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Ghost Net Fishing – Prototyp</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<header>
+    <h1>Ghost Net Fishing</h1>
+</header>
+
+<main>
+
+<h2>Alle Geisternetze</h2>
+
+    <nav>
+        <a th:href="@{/ghostnets}">Alle Geisternetze</a>
+        <a th:href="@{/ghostnets/open}">Offene Geisternetze</a>
+        <a th:href="@{/ghostnets/new}">Neues Geisternetz melden</a>
+    </nav>
+
+    <p>Über diese Navigation sind alle relevanten Funktionen des Prototyps erreichbar.</p>
+</main>
+
+</body>
+</html>
